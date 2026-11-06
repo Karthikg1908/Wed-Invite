@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 160" preserveAspectRatio="xMidYMin meet" aria-hidden="true">
+ <g stroke="#E8C994" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".69">
+  <g>
+   <path d="M26 140 C34 105 54 76 77 53 C94 36 111 26 139 20"/>
+   <path d="M42 112 Q58 94 73 91 M56 81 Q73 73 83 56 M76 55 Q94 56 104 43 M97 35 Q109 45 120 37"/>
+   <path d="M36 119 Q20 97 26 82 Q45 90 46 106" fill="#D8B879" fill-opacity=".13"/>
+   <path d="M57 89 Q46 64 54 51 Q72 67 66 80" fill="#D8B879" fill-opacity=".13"/>
+   <path d="M80 55 Q78 34 90 26 Q101 39 94 48" fill="#D8B879" fill-opacity=".13"/>
+   <path d="M102 34 Q108 15 123 13 Q121 30 113 34" fill="#D8B879" fill-opacity=".13"/>
+   <path d="M27 140 Q14 130 8 111"/>
+   <circle cx="139" cy="20" r="2.5" fill="#E8C994" stroke="none"/>
+   <circle cx="30" cy="141" r="2" fill="#E8C994" stroke="none"/>
+   <path d="M17 130 Q12 119 19 115 Q29 114 30 124 Q25 131 17 130 Z" fill="#D7B77A" fill-opacity=".24"/>
+  </g>
+  <g transform="translate(760 0) scale(-1 1)">
+   <path d="M26 140 C34 105 54 76 77 53 C94 36 111 26 139 20"/>
+   <path d="M42 112 Q58 94 73 91 M56 81 Q73 73 83 56 M76 55 Q94 56 104 43 M97 35 Q109 45 120 37"/>
+   <path d="M36 119 Q20 97 26 82 Q45 90 46 106" fill="#D8B879" fill-opacity=".13"/>
+   <path d="M57 89 Q46 64 54 51 Q72 67 66 80" fill="#D8B879" fill-opacity=".13"/>
+   <path d="M80 55 Q78 34 90 26 Q101 39 94 48" fill="#D8B879" fill-opacity=".13"/>
+   <path d="M102 34 Q108 15 123 13 Q121 30 113 34" fill="#D8B879" fill-opacity=".13"/>
+   <path d="M27 140 Q14 130 8 111"/>
+   <circle cx="139" cy="20" r="2.5" fill="#E8C994" stroke="none"/>
+   <circle cx="30" cy="141" r="2" fill="#E8C994" stroke="none"/>
+   <path d="M17 130 Q12 119 19 115 Q29 114 30 124 Q25 131 17 130 Z" fill="#D7B77A" fill-opacity=".24"/>
+  </g>
+ </g>
+</svg>

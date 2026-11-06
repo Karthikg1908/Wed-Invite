@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 390" preserveAspectRatio="none">
+<defs>
+ <linearGradient id="satin" x1="0" y1="0" x2=".45" y2="1"><stop stop-color="#fffef8"/><stop offset=".23" stop-color="#f6eef4"/><stop offset=".60" stop-color="#dfd0e1"/><stop offset=".84" stop-color="#faf3ed"/><stop offset="1" stop-color="#d1bfd6"/></linearGradient>
+ <linearGradient id="hem" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#be985a"/><stop offset=".45" stop-color="#f7e1aa"/><stop offset=".8" stop-color="#c39d66"/><stop offset="1" stop-color="#ecd9ad"/></linearGradient>
+ <linearGradient id="fall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffefa" stop-opacity=".76"/><stop offset=".45" stop-color="#f7f0f5" stop-opacity=".32"/><stop offset=".8" stop-color="#705b81" stop-opacity=".15"/><stop offset="1" stop-color="#705b81" stop-opacity="0"/></linearGradient>
+</defs>
+<path d="M0 0H920V24 C800 85 685 202 496 250 C283 309 111 217 0 92 Z" fill="url(#satin)"/>
+<g fill="none" stroke-linecap="round">
+ <path d="M33 1 C82 93 133 156 223 201" stroke="#fffdfa" stroke-width="18" opacity=".52"/>
+ <path d="M122 1 C160 99 250 204 349 235" stroke="#b6a2bf" stroke-width="26" opacity=".23"/>
+ <path d="M212 1 C272 132 352 228 485 250" stroke="#fffdfa" stroke-width="27" opacity=".48"/>
+ <path d="M335 1 C401 124 484 206 612 211" stroke="#b6a2bf" stroke-width="29" opacity=".18"/>
+ <path d="M478 1 C535 106 614 153 730 129" stroke="#fffdfa" stroke-width="23" opacity=".48"/>
+ <path d="M618 1 C699 62 750 83 835 57" stroke="#b6a2bf" stroke-width="18" opacity=".18"/>
+ <path d="M0 94 C128 219 295 307 493 248 C675 201 801 80 920 24" stroke="#91759d" stroke-width="17" opacity=".20"/>
+ <path d="M0 92 C126 217 294 296 494 248 C675 200 800 80 920 24" stroke="url(#hem)" stroke-width="5"/>
+ <path d="M0 100 C123 227 294 308 497 259 C672 209 812 93 920 35" stroke="#fff9eb" stroke-width="2" opacity=".85"/>
+</g>
+<path d="M0 0H920V26 C809 102 674 216 496 256 C283 310 103 228 0 95 Z" fill="url(#fall)" opacity=".18"/>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 310" preserveAspectRatio="none">
+ <defs>
+  <linearGradient id="silk" x1="0" x2="0.15" y1="0" y2="1">
+   <stop stop-color="#fff9f4"/>
+   <stop offset=".3" stop-color="#eee2ee"/>
+   <stop offset=".64" stop-color="#f7eff3"/>
+   <stop offset="1" stop-color="#d4bfdb"/>
+  </linearGradient>
+  <linearGradient id="hem" x1="0" y1="0" x2="1" y2="0">
+   <stop stop-color="#ae8752"/>
+   <stop offset=".28" stop-color="#f6e5bd"/>
+   <stop offset=".55" stop-color="#b48a56"/>
+   <stop offset=".83" stop-color="#fbebc6"/>
+   <stop offset="1" stop-color="#b08b59"/>
+  </linearGradient>
+ </defs>
+ <path d="M0 0H1200V28 C1112 70 1060 91 985 111 C831 150 725 233 600 228 C475 233 369 150 215 111 C140 91 88 70 0 28Z" fill="url(#silk)"/>
+ <g fill="none" stroke-linecap="round">
+  <path d="M18 -12C84 94 135 134 260 141" stroke="#fffefa" stroke-width="29" opacity=".49"/>
+  <path d="M116 -14C207 139 305 178 419 186" stroke="#aa8fb2" stroke-width="27" opacity=".16"/>
+  <path d="M240 -12C304 115 400 212 515 228" stroke="#fffefa" stroke-width="39" opacity=".35"/>
+  <path d="M368 -16C419 98 478 200 590 231" stroke="#a08aaa" stroke-width="27" opacity=".15"/>
+  <path d="M500 -14C524 92 551 181 599 224" stroke="#fffefa" stroke-width="29" opacity=".42"/>
+  <path d="M700 -14C678 92 648 181 601 224" stroke="#fffefa" stroke-width="29" opacity=".42"/>
+  <path d="M832 -16C781 98 723 200 611 231" stroke="#a08aaa" stroke-width="27" opacity=".15"/>
+  <path d="M960 -12C896 115 800 212 685 228" stroke="#fffefa" stroke-width="39" opacity=".35"/>
+  <path d="M1084 -14C993 139 895 178 781 186" stroke="#aa8fb2" stroke-width="27" opacity=".16"/>
+  <path d="M1182 -12C1116 94 1065 134 940 141" stroke="#fffefa" stroke-width="29" opacity=".49"/>
+  <path d="M0 28C88 70 140 91 215 111C369 150 475 233 600 228C725 233 831 150 985 111C1060 91 1112 70 1200 28" stroke="#6b486e" stroke-width="23" opacity=".11"/>
+  <path d="M0 28C88 70 140 91 215 111C369 150 475 233 600 228C725 233 831 150 985 111C1060 91 1112 70 1200 28" stroke="url(#hem)" stroke-width="5"/>
+  <path d="M0 19C88 61 140 82 215 102C369 141 475 224 600 219C725 224 831 141 985 102C1060 82 1112 61 1200 19" stroke="#fffefa" stroke-width="2" opacity=".65"/>
+ </g>
+</svg>

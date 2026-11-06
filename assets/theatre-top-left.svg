@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280" preserveAspectRatio="none">
+<defs>
+ <linearGradient id="satin" x1="15%" y1="0%" x2="60%" y2="100%"><stop stop-color="#fffdf8"/><stop offset=".23" stop-color="#f2e9ef"/><stop offset=".48" stop-color="#d8c6dc"/><stop offset=".7" stop-color="#f8f1ef"/><stop offset="1" stop-color="#c3a8cb"/></linearGradient>
+ <linearGradient id="edge" x1="0%" y1="0%" x2="100%" y2="0%"><stop stop-color="#b28c57"/><stop offset=".25" stop-color="#faeac4"/><stop offset=".52" stop-color="#b58e5c"/><stop offset=".75" stop-color="#f4deb2"/><stop offset="1" stop-color="#b18858"/></linearGradient>
+</defs>
+<path d="M0 0 H600 V188 C550 188 507 221 439 209 C369 203 341 126 267 133 C174 143 165 227 73 209 C43 203 18 185 0 167 Z" fill="url(#satin)"/>
+<path d="M-15 -10 Q35 110 120 182 M82 -15 Q136 100 219 143 M185 -15 Q235 91 318 157 M296 -15 Q325 112 425 192 M408 -15 Q435 96 502 190 M514 -15 Q530 76 560 124" fill="none" stroke="#fffdfb" stroke-width="22" opacity=".37" stroke-linecap="round"/>
+<path d="M31 -6 Q96 150 182 170 M153 -8 Q220 126 306 141 M320 -9 Q373 140 448 208 M476 -8 Q502 128 534 166" fill="none" stroke="#92749c" stroke-width="15" opacity=".12" stroke-linecap="round"/>
+<path d="M0 167 C18 185 43 203 73 209 C165 227 174 143 267 133 C341 126 369 203 439 209 C507 221 550 188 600 188" fill="none" stroke="#704b74" stroke-width="17" opacity=".08"/>
+<path d="M0 167 C18 185 43 203 73 209 C165 227 174 143 267 133 C341 126 369 203 439 209 C507 221 550 188 600 188" fill="none" stroke="url(#edge)" stroke-width="4.5"/>
+<path d="M0 162 C18 180 43 198 73 204 C165 222 174 138 267 128 C341 121 369 198 439 204 C507 216 550 183 600 183" fill="none" stroke="#fff9e9" stroke-width="1.8" opacity=".7"/>
+</svg>
