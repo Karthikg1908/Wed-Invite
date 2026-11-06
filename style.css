@@ -5,7 +5,15 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
+body { position: relative; isolation: isolate; margin: 0; color: var(--ink); background: var(--wine-deep); font-family: var(--sans); }
+body::before {
+  content: ""; position: fixed; z-index: -2; inset: 0; pointer-events: none;
+  background: url("assets/prewedding-background.JPG") 50% 38% / cover no-repeat;
+}
+body::after {
+  content: ""; position: fixed; z-index: -1; inset: 0; pointer-events: none;
+  background: rgba(45, 17, 29, .28);
+}
 img { display: block; width: 100%; }
 a { color: inherit; }
 button { font: inherit; }
@@ -44,13 +52,12 @@ nav a:hover, .share-link:hover { color: var(--gold); }
 .hero::after { right: 10%; top: 38%; font-size: 16px; animation-delay: -3s; }
 
 .section-pad { padding: clamp(82px, 10vw, 140px) clamp(22px, 7vw, 110px); }
-.intro, .celebrate, .moments, .closing { content-visibility: auto; contain-intrinsic-size: 900px; }
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
 .reveal.is-visible { opacity: 1; transform: none; }
 .event.reveal:nth-child(2), .venue-card.reveal:nth-child(2), .photo-grid figure.reveal:nth-child(2) { transition-delay: .08s; }
 .event.reveal:nth-child(3), .photo-grid figure.reveal:nth-child(3) { transition-delay: .16s; }
 .wine { color: var(--wine); }
-.intro { text-align: center; max-width: 1000px; margin: auto; }
+.intro { text-align: center; max-width: 1000px; margin: auto; background: rgba(251,247,241,.92); backdrop-filter: blur(3px); }
 .intro h2, .section-heading h2, .closing h2 { margin: 0; font: 400 clamp(44px, 6vw, 82px)/.98 var(--serif); letter-spacing: -.03em; }
 .intro > p:not(.eyebrow) { max-width: 620px; margin: 28px auto 54px; color: #6f6061; font: 18px/1.8 var(--serif); }
 .families { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 38px; border-top: 1px solid #d9cbc2; padding-top: 38px; }
@@ -58,7 +65,7 @@ nav a:hover, .share-link:hover { color: var(--gold); }
 .families span { display: block; color: var(--ink); font: 28px var(--serif); margin-bottom: 5px; }
 .families i { color: var(--gold); font-style: normal; }
 
-.celebrate { color: white; background: var(--wine); }
+.celebrate { color: white; background: rgba(87,35,58,.92); backdrop-filter: blur(3px); }
 .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 40px; max-width: 1200px; margin: 0 auto 64px; }
 .section-heading > p { max-width: 360px; margin: 0; color: rgba(255,255,255,.68); line-height: 1.7; }
 .event-list { max-width: 1200px; margin: auto; border-top: 1px solid rgba(255,255,255,.24); }
@@ -79,7 +86,7 @@ nav a:hover, .share-link:hover { color: var(--gold); }
 .venue-card h3 { margin: 0 0 10px; font: 25px/1.1 var(--serif); }
 .venue-card span { color: #756669; font-size: 12px; line-height: 1.5; }
 
-.moments { background: var(--blush); }
+.moments { background: rgba(243,230,223,.92); backdrop-filter: blur(3px); }
 .dark-heading { color: var(--ink); }
 .dark-heading > p { color: #796b6c; }
 .photo-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: repeat(2, 250px); gap: 16px; }
@@ -88,13 +95,23 @@ nav a:hover, .share-link:hover { color: var(--gold); }
 .photo-grid img { height: 100%; object-fit: cover; transition: transform .6s ease; }
 .photo-grid figure:hover img { transform: scale(1.025); }
 
-.closing { text-align: center; }
+.closing { text-align: center; background: rgba(251,247,241,.92); backdrop-filter: blur(3px); }
 .closing > p:not(.kannada, .signature, .share-status) { color: #77696a; font-family: var(--serif); font-size: 18px; }
 .wine-button { margin-top: 22px; background: var(--wine); border-color: var(--wine); color: white; }
 .share-status { min-height: 20px; color: var(--wine); font-size: 12px; }
 .signature { margin: 72px 0 0; font: 38px var(--serif); }
 footer { padding: 26px clamp(22px, 5vw, 72px); display: flex; justify-content: space-between; background: var(--wine-deep); color: rgba(255,255,255,.68); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
 footer a { color: white; text-decoration: none; }
+.petal-layer { position: fixed; z-index: 15; inset: 0; overflow: hidden; pointer-events: none; display: none; }
+.petal-layer.active { display: block; }
+.flower-petal { position: absolute; left: var(--left, 50%); top: -50px; width: 14px; height: 22px; opacity: 0; transform-origin: center; animation: petal-fall var(--duration, 4s) cubic-bezier(.25,.46,.45,.94) var(--delay, 0s) forwards; }
+.flower-petal.rose { border-radius: 70% 20% 70% 20%; background: linear-gradient(145deg, #a83948, #6d1c29); box-shadow: 0 3px 9px rgba(77,17,25,.14); }
+.flower-petal.jasmine { width: 15px; height: 15px; border-radius: 70% 35% 70% 35%; background: linear-gradient(145deg, #fffdf6, #eadfcf); box-shadow: 0 3px 8px rgba(122,103,84,.10); }
+.flower-petal.champagne { width: 11px; height: 18px; border-radius: 65% 25% 65% 25%; background: linear-gradient(145deg, #efdcb8, #c9a25e); }
+.tour-button { position: fixed; z-index: 20; left: 22px; bottom: max(22px, env(safe-area-inset-bottom)); height: 46px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 15px; color: white; background: rgba(54,21,35,.92); border: 1px solid rgba(255,255,255,.32); border-radius: 999px; box-shadow: 0 10px 30px rgba(25,8,15,.2); cursor: pointer; backdrop-filter: blur(10px); }
+.tour-button:hover { background: var(--wine); }
+.tour-icon { color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: -1px; }
+.tour-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .music-button { position: fixed; z-index: 20; right: 22px; bottom: max(22px, env(safe-area-inset-bottom)); min-width: 104px; height: 46px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 15px; color: white; background: rgba(54,21,35,.92); border: 1px solid rgba(255,255,255,.32); border-radius: 999px; box-shadow: 0 10px 30px rgba(25,8,15,.2); cursor: pointer; backdrop-filter: blur(10px); }
 .music-button:hover { background: var(--wine); }
 .music-icon { color: var(--gold); font: 21px var(--serif); }
@@ -110,6 +127,12 @@ footer a { color: white; text-decoration: none; }
 @keyframes hero-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes drift { 0%, 100% { transform: translate3d(0,0,0) rotate(0); opacity: .25; } 50% { transform: translate3d(10px,-18px,0) rotate(45deg); opacity: .8; } }
 @keyframes sound-bar { from { transform: scaleY(.4); } to { transform: scaleY(1); } }
+@keyframes petal-fall {
+  0% { opacity: 0; transform: translate3d(0,-30px,0) rotate(0deg) scale(var(--scale,1)); }
+  12% { opacity: .9; }
+  78% { opacity: .82; }
+  100% { opacity: 0; transform: translate3d(var(--drift,30px),calc(100vh + 90px),0) rotate(var(--spin,420deg)) scale(var(--scale,1)); }
+}
 
 @media (max-width: 760px) {
   .site-header { height: 68px; }
@@ -117,6 +140,7 @@ footer a { color: white; text-decoration: none; }
   nav { gap: 0; }
   .hero { min-height: 680px; }
   .hero-image { object-position: 59% center; }
+  body::before { background-position: 59% center; }
   .hero-shade { background: linear-gradient(0deg, rgba(30,12,22,.75), rgba(30,12,22,.08) 70%); }
   .hero-copy { left: 22px; right: 22px; top: auto; bottom: 78px; transform: none; }
   .hero h1 { font-size: clamp(62px, 20vw, 92px); max-width: 620px; }
@@ -141,6 +165,7 @@ footer a { color: white; text-decoration: none; }
   .photo-grid .photo-tall { grid-column: 1 / 3; grid-row: auto; }
   footer { display: block; text-align: center; }
   footer a { display: inline-block; margin-top: 10px; }
+  .tour-button { left: 14px; height: 44px; padding: 0 13px; }
   .music-button { right: 14px; min-width: 94px; height: 44px; padding: 0 13px; }
 }
 @media (max-width: 390px) {
@@ -155,4 +180,5 @@ footer a { color: white; text-decoration: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .hero-copy > *, .reveal { opacity: 1; transform: none; }
+  .petal-layer { display: none !important; }
 }
