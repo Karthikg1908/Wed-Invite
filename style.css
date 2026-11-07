@@ -61,7 +61,7 @@ nav a:hover, .share-link:hover { color: var(--gold); }
 .intro { min-height: 100svh; width: 100%; margin: 0; padding-block: clamp(56px, 5vw, 76px); display: grid; align-content: center; text-align: center; background: rgba(251,249,253,.76); backdrop-filter: blur(3px); }
 .intro > * { width: min(100%, 1000px); margin-left: auto; margin-right: auto; }
 .intro h2, .section-heading h2, .closing h2 { margin: 0; font: 400 clamp(44px, 6vw, 82px)/.98 var(--serif); letter-spacing: -.03em; }
-.intro h2 { margin-left: auto; margin-right: auto; text-align: center; }
+.intro h2 { margin-left: auto; margin-right: auto; color: var(--wine); text-align: center; }
 .intro > p:not(.eyebrow) { max-width: 620px; margin: 28px auto 54px; color: #6f6476; font: 18px/1.8 var(--serif); }
 .intro > .intro-blessing { font-family: "Noto Serif Kannada", serif; font-size: clamp(17px, 2vw, 22px); line-height: 1.9; color: var(--wine); }
 .families { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 38px; border-top: 1px solid #d9cde2; padding-top: 38px; }
@@ -92,6 +92,7 @@ nav a:hover, .share-link:hover { color: var(--gold); }
 
 .moments { background: rgba(238,231,244,.8); backdrop-filter: blur(3px); }
 .dark-heading { color: var(--ink); }
+.dark-heading h2 { color: var(--wine); }
 .dark-heading > p { color: #746a7b; }
 .photo-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: repeat(2, 250px); gap: 16px; }
 .photo-grid figure { margin: 0; overflow: hidden; }

@@ -3,6 +3,7 @@
   const status = document.querySelector("#shareStatus");
   const musicButton = document.querySelector("#musicButton");
   const musicStatus = document.querySelector("#musicStatus");
+  const backgroundMusic = document.querySelector("#backgroundMusic");
   const petalLayer = document.querySelector("#petalLayer");
   const countdownMessage = document.querySelector("#countdownMessage");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -10,10 +11,12 @@
 
   function getMusic() {
     if (music) return music;
-    music = new Audio("wedding-music.mp3");
+    music = backgroundMusic || new Audio("wedding-music.mp3");
     music.loop = true;
     music.preload = "auto";
     music.volume = 0.35;
+    music.muted = false;
+    music.defaultMuted = false;
     return music;
   }
 
@@ -25,7 +28,9 @@
 
   async function startMusic() {
     try {
-      await getMusic().play();
+      const audio = getMusic();
+      audio.muted = false;
+      await audio.play();
       updateMusicButton(true);
       if (musicStatus) musicStatus.textContent = "Background music playing.";
       return true;
@@ -117,6 +122,10 @@
   musicButton?.addEventListener("click", toggleMusic);
   startMusic().then((started) => {
     if (started) removeMusicUnlockListeners();
+  });
+
+  window.addEventListener("pageshow", () => {
+    if (!music || music.paused) startMusic();
   });
 
   let musicUnlocking = false;
