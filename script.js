@@ -134,6 +134,9 @@
     document.removeEventListener("pointerdown", unlockMusic);
     document.removeEventListener("touchstart", unlockMusic);
     document.removeEventListener("keydown", unlockMusic);
+    document.removeEventListener("wheel", unlockMusic);
+    document.removeEventListener("scroll", unlockMusic);
+    document.removeEventListener("touchmove", unlockMusic);
   }
 
   async function unlockMusic(event) {
@@ -148,6 +151,9 @@
   document.addEventListener("pointerdown", unlockMusic, { passive: true });
   document.addEventListener("touchstart", unlockMusic, { passive: true });
   document.addEventListener("keydown", unlockMusic);
+  document.addEventListener("wheel", unlockMusic, { passive: true });
+  document.addEventListener("scroll", unlockMusic, { passive: true });
+  document.addEventListener("touchmove", unlockMusic, { passive: true });
   document.addEventListener("visibilitychange", () => {
     if (document.hidden && music && !music.paused) {
       music.pause();
