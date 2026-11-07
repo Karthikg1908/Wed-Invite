@@ -3,9 +3,6 @@
   const status = document.querySelector("#shareStatus");
   const musicButton = document.querySelector("#musicButton");
   const musicStatus = document.querySelector("#musicStatus");
-  const tourButton = document.querySelector("#tourButton");
-  const tourLabel = tourButton?.querySelector(".tour-label");
-  const tourIcon = tourButton?.querySelector(".tour-icon");
   const petalLayer = document.querySelector("#petalLayer");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let music = null;
@@ -115,39 +112,23 @@
     window.setInterval(launchPetals, 6500);
   }
 
-  // A section-by-section tour: wait 15 seconds, then move quickly to the next page.
-  const tourPages = [...document.querySelectorAll(".hero, .intro, .celebrate, .moments, .closing")];
+  // A section-by-section tour: wait 5 seconds, then move quickly to the next page.
+  const tourPages = [...document.querySelectorAll(".hero, .intro, .venues-page, .moments, .closing")];
   let autoScrollEnabled = !reducedMotion;
   let advanceTimer = 0;
   let interactionTimer = 0;
   let temporarilyPaused = false;
 
-  function isAtLastPage() {
-    const lastPage = tourPages.at(-1);
-    return lastPage && window.scrollY >= lastPage.offsetTop - 100;
-  }
-
-  function updateTourButton() {
-    if (!tourButton) return;
-    const atLastPage = isAtLastPage();
-    const label = atLastPage && !autoScrollEnabled ? "Replay tour" : autoScrollEnabled && !temporarilyPaused ? "Pause tour" : autoScrollEnabled ? "Tour paused" : "Start tour";
-    tourLabel.textContent = label;
-    tourIcon.textContent = atLastPage || !autoScrollEnabled ? "▶" : temporarilyPaused ? "…" : "Ⅱ";
-    tourButton.setAttribute("aria-pressed", String(autoScrollEnabled));
-    tourButton.setAttribute("aria-label", label);
-  }
-
   function scheduleNextPage() {
     window.clearTimeout(advanceTimer);
     if (!autoScrollEnabled || temporarilyPaused || document.hidden) return;
-    advanceTimer = window.setTimeout(advancePage, 15000);
+    advanceTimer = window.setTimeout(advancePage, 5000);
   }
 
   function advancePage() {
     const nextPage = tourPages.find((page) => page.offsetTop > window.scrollY + 100);
     if (!nextPage) {
       autoScrollEnabled = false;
-      updateTourButton();
       return;
     }
     nextPage.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
@@ -155,28 +136,15 @@
   }
 
   function pauseForInteraction(event) {
-    if (!autoScrollEnabled || event?.target?.closest?.("#tourButton")) return;
+    if (!autoScrollEnabled) return;
     temporarilyPaused = true;
     window.clearTimeout(advanceTimer);
     window.clearTimeout(interactionTimer);
-    updateTourButton();
     interactionTimer = window.setTimeout(() => {
       temporarilyPaused = false;
-      updateTourButton();
       scheduleNextPage();
     }, 12000);
   }
-
-  tourButton?.addEventListener("click", () => {
-    const replaying = isAtLastPage() && !autoScrollEnabled;
-    if (replaying) tourPages[0]?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
-    autoScrollEnabled = replaying || !autoScrollEnabled;
-    temporarilyPaused = false;
-    window.clearTimeout(interactionTimer);
-    if (autoScrollEnabled) scheduleNextPage();
-    else window.clearTimeout(advanceTimer);
-    updateTourButton();
-  });
 
   ["wheel", "touchstart", "pointerdown", "keydown"].forEach((eventName) => {
     window.addEventListener(eventName, pauseForInteraction, { passive: true });
@@ -187,6 +155,5 @@
     if (document.hidden) window.clearTimeout(advanceTimer);
     else scheduleNextPage();
   });
-  updateTourButton();
   scheduleNextPage();
 })();

@@ -14,14 +14,14 @@
   <link rel="preload" href="assets/prewedding-background.JPG" as="image" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=DM+Serif+Display:ital@0;1&amp;family=Noto+Serif+Kannada:wght@500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=DM+Sans:wght@400;500;600&amp;family=Great+Vibes&amp;family=Noto+Serif+Kannada:wght@500&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
     <a class="monogram" href="#home" aria-label="Praveen and Kavya, home">P <span>&amp;</span> K</a>
     <nav aria-label="Main navigation">
-      <a href="#celebrate">When &amp; where</a>
+      <a href="#celebrate">Dates &amp; venues</a>
       <a href="#moments">Our moments</a>
       <button class="share-link" id="shareButton" type="button">Share invite</button>
     </nav>
@@ -36,7 +36,7 @@
         <p class="eyebrow">Together with our families</p>
         <h1><span>Praveen</span> <em>&amp;</em> <span>Kavya</span></h1>
         <p class="hero-date">01—02 December 2026</p>
-        <a class="primary-button" href="#celebrate">See the celebration <span aria-hidden="true">↓</span></a>
+        <a class="primary-button" href="#celebrate">Join our celebration <span aria-hidden="true">↓</span></a>
       </div>
       <p class="hero-place">Magadi, Karnataka</p>
     </section>
@@ -44,46 +44,45 @@
     <section class="intro section-pad" aria-labelledby="intro-title">
       <p class="eyebrow wine">We are getting married</p>
       <h2 id="intro-title">One beautiful beginning,<br>made brighter by you.</h2>
-      <p>With joyful hearts, we invite you and your family to share our celebration and bless the beginning of our forever.</p>
+      <p class="intro-blessing" lang="kn">ಹೊಸ ಜೀವನದ ಹೊಸ ಹೆಜ್ಜೆಗೆ ನಿಮ್ಮ ಪ್ರೀತಿ ಮತ್ತು ಆಶೀರ್ವಾದ ಇರಲಿ</p>
       <div class="families" aria-label="Our parents">
         <p><span>Praveen</span>Son of Rangappa &amp; Jayamma</p>
-        <i aria-hidden="true">✦</i>
+        <i aria-hidden="true">♥</i>
         <p><span>Kavya</span>Daughter of Mrs. Rathna &amp; the late Mr. Gangadharaiah</p>
       </div>
     </section>
 
-    <section class="celebrate section-pad" id="celebrate" aria-labelledby="celebrate-title">
-      <div class="section-heading">
-        <div><p class="eyebrow">When &amp; where</p><h2 id="celebrate-title">The celebrations</h2></div>
-        <p>Three moments, two venues, one wonderful reason to be together.</p>
+    <section class="venues-page" id="celebrate" aria-labelledby="venues-title">
+      <div class="venues-page-head">
+        <p class="eyebrow wine">Dates &amp; venues</p>
+        <h2 id="venues-title">Celebrate with us</h2>
+        <p>Everything you need, together in one place.</p>
       </div>
-
-      <div class="event-list">
-        <article class="event">
-          <time datetime="2026-12-01T18:30"><strong>01</strong><span>DEC · TUE</span></time>
-          <div><p>Evening celebration</p><h3>Reception</h3><span>6:30 PM onwards</span></div>
-          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Purvaja+Samudhaya+Bhavana%2C+X6C2%2B2GJ%2C+Magadi-Kunigal+Rd%2C+Aladakattepalya%2C+Karnataka+562120" target="_blank" rel="noopener noreferrer">Directions ↗</a>
-        </article>
-        <article class="event featured">
-          <time datetime="2026-12-02T09:30"><strong>02</strong><span>DEC · WED</span></time>
-          <div><p>The sacred moment</p><h3>Muhurtham</h3><span>9:30 AM</span></div>
-          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Purvaja+Samudhaya+Bhavana%2C+X6C2%2B2GJ%2C+Magadi-Kunigal+Rd%2C+Aladakattepalya%2C+Karnataka+562120" target="_blank" rel="noopener noreferrer">Directions ↗</a>
-        </article>
-        <article class="event">
-          <time datetime="2026-12-13T12:30"><strong>13</strong><span>DEC · SUN</span></time>
-          <div><p>Family celebration</p><h3>Beegara Oota</h3><span>12:30 PM onwards</span></div>
-          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=HB+Function+Hall%2C+133%2C+Magadi+Main+Rd%2C+Kamakshipalya%2C+Bengaluru%2C+Karnataka+560079" target="_blank" rel="noopener noreferrer">Directions ↗</a>
-        </article>
-      </div>
-
-      <div class="venues">
+      <div class="venue-grid">
         <article class="venue-card">
           <img src="assets/purvaja-samudhaya-bhavana.jpeg" alt="Purvaja Samudhaya Bhavana" width="1200" height="800" loading="lazy">
-          <div><p>01—02 December</p><h3>Purvaja Samudhaya Bhavana</h3><span>Magadi–Kunigal Road, Aladakattepalya</span></div>
+          <div>
+            <p class="venue-kicker">Wedding venue</p>
+            <h3>Purvaja Samudhaya Bhavana</h3>
+            <div class="venue-events">
+              <p class="venue-event"><time datetime="2026-12-01T18:30">01 Dec</time><span>Reception · 6:30 PM onwards</span></p>
+              <p class="venue-event"><time datetime="2026-12-02T09:30">02 Dec</time><span>Muhurtham · 9:30 AM</span></p>
+            </div>
+            <span class="venue-address">Magadi–Kunigal Road, Aladakattepalya</span>
+            <a class="venue-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=Purvaja+Samudhaya+Bhavana%2C+X6C2%2B2GJ%2C+Magadi-Kunigal+Rd%2C+Aladakattepalya%2C+Karnataka+562120" target="_blank" rel="noopener noreferrer">Get directions <b aria-hidden="true">↗</b></a>
+          </div>
         </article>
         <article class="venue-card">
           <img src="assets/hb-function-hall.webp" alt="HB Function Hall" width="723" height="511" loading="lazy">
-          <div><p>13 December</p><h3>HB Function Hall</h3><span>Magadi Main Road, Kamakshipalya, Bengaluru</span></div>
+          <div>
+            <p class="venue-kicker">Family celebration</p>
+            <h3>HB Function Hall</h3>
+            <div class="venue-events">
+              <p class="venue-event"><time datetime="2026-12-13T12:30">13 Dec</time><span>Beegara Oota · 12:30 PM onwards</span></p>
+            </div>
+            <span class="venue-address">Magadi Main Road, Kamakshipalya, Bengaluru</span>
+            <a class="venue-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=HB+Function+Hall%2C+133%2C+Magadi+Main+Rd%2C+Kamakshipalya%2C+Bengaluru%2C+Karnataka+560079" target="_blank" rel="noopener noreferrer">Get directions <b aria-hidden="true">↗</b></a>
+          </div>
         </article>
       </div>
     </section>
@@ -112,9 +111,6 @@
 
   <footer><p>01—02 December 2026 · Magadi, Karnataka</p><a href="#home">Back to top ↑</a></footer>
   <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
-  <button class="tour-button" id="tourButton" type="button" aria-pressed="true" aria-label="Pause automatic scrolling">
-    <span aria-hidden="true" class="tour-icon">Ⅱ</span><span class="tour-label">Pause tour</span>
-  </button>
   <button class="music-button" id="musicButton" type="button" aria-pressed="false" aria-label="Play background music">
     <span class="music-icon" aria-hidden="true">♪</span>
     <span class="music-label">Music</span>
