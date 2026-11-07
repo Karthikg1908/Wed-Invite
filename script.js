@@ -10,7 +10,7 @@
 
   function getMusic() {
     if (music) return music;
-    music = new Audio("background-music.mp3");
+    music = new Audio("wedding-music.mp3");
     music.loop = true;
     music.preload = "auto";
     music.volume = 0.35;
@@ -115,17 +115,29 @@
   }
 
   musicButton?.addEventListener("click", toggleMusic);
-  startMusic();
+  startMusic().then((started) => {
+    if (started) removeMusicUnlockListeners();
+  });
+
+  let musicUnlocking = false;
+
+  function removeMusicUnlockListeners() {
+    document.removeEventListener("pointerdown", unlockMusic);
+    document.removeEventListener("touchstart", unlockMusic);
+    document.removeEventListener("keydown", unlockMusic);
+  }
 
   async function unlockMusic(event) {
-    if (event.target?.closest?.("#musicButton")) return;
+    if (musicUnlocking || event.target?.closest?.("#musicButton")) return;
+    musicUnlocking = true;
     if (await startMusic()) {
-      document.removeEventListener("pointerdown", unlockMusic);
-      document.removeEventListener("keydown", unlockMusic);
+      removeMusicUnlockListeners();
     }
+    musicUnlocking = false;
   }
 
   document.addEventListener("pointerdown", unlockMusic, { passive: true });
+  document.addEventListener("touchstart", unlockMusic, { passive: true });
   document.addEventListener("keydown", unlockMusic);
   document.addEventListener("visibilitychange", () => {
     if (document.hidden && music && !music.paused) {
@@ -164,7 +176,7 @@
     window.setInterval(createPetal, window.innerWidth < 640 ? 460 : 320);
   }
 
-  // A section-by-section tour: wait 5 seconds, then move quickly to the next page.
+  // A section-by-section tour: wait 10 seconds, then move quickly to the next page.
   const tourPages = [...document.querySelectorAll(".hero, .intro, .venues-page, .moments, .closing")];
   let autoScrollEnabled = !reducedMotion;
   let advanceTimer = 0;
@@ -181,7 +193,7 @@
   function scheduleNextPage() {
     window.clearTimeout(advanceTimer);
     if (!autoScrollEnabled || temporarilyPaused || autoScrollInProgress || document.hidden) return;
-    advanceTimer = window.setTimeout(advancePage, 5000);
+    advanceTimer = window.setTimeout(advancePage, 10000);
   }
 
   function advancePage() {
