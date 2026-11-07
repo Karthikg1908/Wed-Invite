@@ -4,6 +4,8 @@
   const musicButton = document.querySelector("#musicButton");
   const musicStatus = document.querySelector("#musicStatus");
   const backgroundMusic = document.querySelector("#backgroundMusic");
+  const welcomeScreen = document.querySelector("#welcomeScreen");
+  const enterInvitation = document.querySelector("#enterInvitation");
   const petalLayer = document.querySelector("#petalLayer");
   const countdownMessage = document.querySelector("#countdownMessage");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -134,13 +136,10 @@
     document.removeEventListener("pointerdown", unlockMusic);
     document.removeEventListener("touchstart", unlockMusic);
     document.removeEventListener("keydown", unlockMusic);
-    document.removeEventListener("wheel", unlockMusic);
-    document.removeEventListener("scroll", unlockMusic);
-    document.removeEventListener("touchmove", unlockMusic);
   }
 
   async function unlockMusic(event) {
-    if (musicUnlocking || event.target?.closest?.("#musicButton")) return;
+    if (musicUnlocking || event.target?.closest?.("#musicButton, #welcomeScreen")) return;
     musicUnlocking = true;
     if (await startMusic()) {
       removeMusicUnlockListeners();
@@ -151,9 +150,6 @@
   document.addEventListener("pointerdown", unlockMusic, { passive: true });
   document.addEventListener("touchstart", unlockMusic, { passive: true });
   document.addEventListener("keydown", unlockMusic);
-  document.addEventListener("wheel", unlockMusic, { passive: true });
-  document.addEventListener("scroll", unlockMusic, { passive: true });
-  document.addEventListener("touchmove", unlockMusic, { passive: true });
   document.addEventListener("visibilitychange", () => {
     if (document.hidden && music && !music.paused) {
       music.pause();
@@ -192,38 +188,52 @@
   }
 
   // A section-by-section tour: wait 10 seconds, then move quickly to the next page.
-  const tourPages = [...document.querySelectorAll(".hero, .intro, .venues-page, .moments, .film, .closing")];
+  const mainTourPages = [...document.querySelectorAll(".hero, .intro, .venues-page, .moments, .film, .closing")];
+  const venuePage = document.querySelector(".venues-page");
+  const venueCards = [...document.querySelectorAll(".venues-page .venue-card")];
   let autoScrollEnabled = !reducedMotion;
   let advanceTimer = 0;
   let interactionTimer = 0;
   let temporarilyPaused = false;
   let autoScrollInProgress = false;
+  let invitationOpened = false;
+
+  function getTourPages() {
+    if (!window.matchMedia("(max-width: 760px)").matches) return mainTourPages;
+    return mainTourPages.flatMap((page) => page === venuePage ? venueCards : [page]);
+  }
+
+  function pageTop(page) {
+    return page.getBoundingClientRect().top + window.scrollY;
+  }
 
   function activeTourIndex() {
-    return tourPages.reduce((activeIndex, page, index) => (
-      page.offsetTop <= window.scrollY + 2 ? index : activeIndex
+    return getTourPages().reduce((activeIndex, page, index) => (
+      pageTop(page) <= window.scrollY + 2 ? index : activeIndex
     ), 0);
   }
 
   function scheduleNextPage() {
     window.clearTimeout(advanceTimer);
-    if (!autoScrollEnabled || temporarilyPaused || autoScrollInProgress || document.hidden) return;
+    if (!invitationOpened || !autoScrollEnabled || temporarilyPaused || autoScrollInProgress || document.hidden) return;
     advanceTimer = window.setTimeout(advancePage, 10000);
   }
 
   function advancePage() {
     if (autoScrollInProgress) return;
+    const tourPages = getTourPages();
     const nextPage = tourPages[activeTourIndex() + 1];
     if (!nextPage) {
       autoScrollEnabled = false;
       return;
     }
     autoScrollInProgress = true;
-    window.scrollTo({ top: nextPage.offsetTop, behavior: reducedMotion ? "auto" : "smooth" });
+    const destination = pageTop(nextPage);
+    window.scrollTo({ top: destination, behavior: reducedMotion ? "auto" : "smooth" });
     window.setTimeout(() => {
       const previousScrollBehavior = document.documentElement.style.scrollBehavior;
       document.documentElement.style.scrollBehavior = "auto";
-      window.scrollTo(0, nextPage.offsetTop);
+      window.scrollTo(0, destination);
       document.documentElement.style.scrollBehavior = previousScrollBehavior;
       autoScrollInProgress = false;
       scheduleNextPage();
@@ -231,7 +241,7 @@
   }
 
   function pauseForInteraction(event) {
-    if (!autoScrollEnabled) return;
+    if (!invitationOpened || !autoScrollEnabled || event.target?.closest?.("#welcomeScreen")) return;
     temporarilyPaused = true;
     window.clearTimeout(advanceTimer);
     window.clearTimeout(interactionTimer);
@@ -246,6 +256,22 @@
   });
 
   if (reducedMotion) autoScrollEnabled = false;
+
+  async function openInvitation() {
+    if (invitationOpened) return;
+    invitationOpened = true;
+    const started = await startMusic();
+    if (started) removeMusicUnlockListeners();
+    document.body.classList.remove("welcome-open");
+    welcomeScreen?.classList.add("is-leaving");
+    window.scrollTo(0, 0);
+    scheduleNextPage();
+    window.setTimeout(() => welcomeScreen?.setAttribute("hidden", ""), 600);
+  }
+
+  enterInvitation?.addEventListener("click", openInvitation);
+  welcomeScreen?.addEventListener("click", openInvitation);
+
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) window.clearTimeout(advanceTimer);
     else {

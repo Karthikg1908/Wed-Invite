@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#6e4f7f">
+  <meta name="theme-color" content="#4a1317">
   <meta name="description" content="Join Praveen and Kavya as they celebrate their wedding on 1–2 December 2026.">
   <meta property="og:title" content="Praveen &amp; Kavya — Wedding Invitation">
   <meta property="og:description" content="With joyful hearts, we invite you to celebrate with us on 1–2 December 2026.">
@@ -15,14 +15,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=DM+Sans:wght@400;500;600&amp;family=Great+Vibes&amp;family=Noto+Serif+Kannada:wght@500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=23">
+  <link rel="stylesheet" href="style.css?v=47">
 </head>
-<body>
+<body class="welcome-open">
+  <div class="welcome-screen" id="welcomeScreen" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+    <img class="welcome-photo" src="assets/welcome-hands.jpg" alt="" width="640" height="640" fetchpriority="high" aria-hidden="true">
+    <div class="welcome-card">
+      <p class="eyebrow">You are invited</p>
+      <p class="welcome-names">Praveen <em>&amp;</em> Kavya</p>
+      <h2 id="welcomeTitle">A celebration awaits</h2>
+      <button class="welcome-button" id="enterInvitation" type="button" aria-label="Enter Praveen and Kavya's wedding invitation">
+        <span aria-hidden="true">♥</span>
+      </button>
+    </div>
+  </div>
+  <noscript><style>.welcome-screen{display:none!important}body{overflow:auto!important}</style></noscript>
+
   <header class="site-header">
     <a class="monogram" href="#home" aria-label="Praveen and Kavya, home">P <span>&amp;</span> K</a>
     <nav aria-label="Main navigation">
       <a href="#celebrate">Dates &amp; venues</a>
-      <a href="#moments">Our moments</a>
+      <a href="#moments">Moments</a>
       <button class="share-link" id="shareButton" type="button">Share invite</button>
     </nav>
   </header>
@@ -34,17 +47,16 @@
       <div class="hero-copy">
         <p class="kannada">ಶುಭ ಮಂಗಳ ವಿವಾಹ</p>
         <p class="eyebrow">Together with our families</p>
-        <h1><span>Praveen</span> <em>&amp;</em> <span>Kavya</span></h1>
+        <h1><span>Praveen</span><br class="desktop-name-break"> <em>&amp;</em> <span>Kavya</span></h1>
         <p class="hero-date">01—02 December 2026</p>
-        <a class="primary-button" href="#celebrate">Join our celebration <span aria-hidden="true">↓</span></a>
       </div>
       <p class="hero-place">Magadi, Karnataka</p>
     </section>
 
     <section class="intro section-pad" id="story" aria-labelledby="intro-title">
-      <p class="eyebrow wine">We are getting married</p>
-      <h2 id="intro-title">One beautiful beginning,<br>made brighter by you.</h2>
-      <p class="intro-blessing" lang="kn">ಹೊಸ ಜೀವನದ ಹೊಸ ಹೆಜ್ಜೆಗೆ ನಿಮ್ಮ ಪ್ರೀತಿ ಮತ್ತು ಆಶೀರ್ವಾದ ಇರಲಿ</p>
+      <p class="eyebrow wine">With joyful hearts</p>
+      <h2 id="intro-title">One beautiful beginning,<br>made brighter by you</h2>
+      <p class="intro-blessing" lang="kn">ಎರಡು ಮನಸುಗಳು, ಒಂದು ಸುಂದರ ಪಯಣದ ಆರಂಭ</p>
       <div class="families" aria-label="Our parents">
         <p><span>Praveen</span>Son of Rangappa &amp; Jayamma</p>
         <i aria-hidden="true">♥</i>
@@ -52,14 +64,45 @@
       </div>
     </section>
 
+    <section class="moments section-pad" id="moments" aria-labelledby="moments-title">
+      <div class="section-heading dark-heading">
+        <div><p class="eyebrow">Captured with love</p><h2 id="moments-title">Before forever</h2></div>
+        <p>Love, laughter, and the quiet moments in between</p>
+      </div>
+      <div class="photo-grid">
+        <figure class="photo-tall"><img src="assets/moment-scooter.jpg" alt="Praveen and Kavya sharing a moment" width="1600" height="1067" loading="lazy"></figure>
+        <figure><img src="assets/moment-portrait.jpg" alt="Praveen and Kavya pre-wedding portrait" width="1600" height="1067" loading="lazy"></figure>
+        <figure><img src="assets/moment-cooking.jpg" alt="Praveen and Kavya cooking together" width="1600" height="1067" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section class="film section-pad" id="film" aria-labelledby="film-title">
+      <div class="film-heading">
+        <p class="eyebrow">Love in every frame</p>
+        <h2 id="film-title">Their story in motion</h2>
+        <p>A little more love and laughter—coming soon</p>
+      </div>
+      <!-- Replace this placeholder with a preload="metadata" video when the film is ready. -->
+      <div class="video-placeholder" role="img" aria-label="Placeholder for Praveen and Kavya's pre-wedding film">
+        <span class="video-play" aria-hidden="true">▶</span>
+        <strong>Praveen &amp; Kavya</strong>
+        <small>Coming soon</small>
+      </div>
+    </section>
+
     <section class="venues-page" id="celebrate" aria-labelledby="venues-title">
       <div class="venues-page-head">
         <p class="eyebrow wine">Dates &amp; venues</p>
         <h2 id="venues-title">Celebrate with us</h2>
-        <p>Everything you need, together in one place.</p>
+        <p>We look forward to celebrating with you</p>
       </div>
       <div class="venue-grid">
         <article class="venue-card">
+          <header class="mobile-venue-heading" aria-hidden="true">
+            <p>Dates &amp; venues</p>
+            <h2>Celebrate with us</h2>
+            <span>We look forward to celebrating with you</span>
+          </header>
           <img src="assets/venue-purvaja.jpg" alt="Purvaja Samudhaya Bhavana" width="1200" height="800" loading="lazy">
           <div>
             <p class="venue-kicker">Wedding venue</p>
@@ -73,6 +116,11 @@
           </div>
         </article>
         <article class="venue-card">
+          <header class="mobile-venue-heading" aria-hidden="true">
+            <p>Dates &amp; venues</p>
+            <h2>Celebrate with us</h2>
+            <span>We look forward to celebrating with you</span>
+          </header>
           <img src="assets/venue-hb-function-hall.webp" alt="HB Function Hall" width="723" height="511" loading="lazy">
           <div>
             <p class="venue-kicker">Beegara Oota</p>
@@ -87,42 +135,15 @@
       </div>
     </section>
 
-    <section class="moments section-pad" id="moments" aria-labelledby="moments-title">
-      <div class="section-heading dark-heading">
-        <div><p class="eyebrow">A little of us</p><h2 id="moments-title">Before forever</h2></div>
-        <p>Love, laughter, and the quiet moments in between.</p>
-      </div>
-      <div class="photo-grid">
-        <figure class="photo-tall"><img src="assets/moment-scooter.jpg" alt="Praveen and Kavya sharing a moment" width="1600" height="1067" loading="lazy"></figure>
-        <figure><img src="assets/moment-portrait.jpg" alt="Praveen and Kavya pre-wedding portrait" width="1600" height="1067" loading="lazy"></figure>
-        <figure><img src="assets/moment-cooking.jpg" alt="Praveen and Kavya cooking together" width="1600" height="1067" loading="lazy"></figure>
-      </div>
-    </section>
-
-    <section class="film section-pad" id="film" aria-labelledby="film-title">
-      <div class="film-heading">
-        <p class="eyebrow">A glimpse of our story</p>
-        <h2 id="film-title">Our pre-wedding film</h2>
-        <p>A little more love, laughter, and us—coming soon.</p>
-      </div>
-      <!-- Replace this placeholder with a preload="metadata" video when the film is ready. -->
-      <div class="video-placeholder" role="img" aria-label="Placeholder for Praveen and Kavya's pre-wedding film">
-        <span class="video-play" aria-hidden="true">▶</span>
-        <strong>Pre-wedding film</strong>
-        <small>Coming soon</small>
-      </div>
-    </section>
-
     <section class="closing section-pad">
-      <p class="closing-kannada-title" lang="kn">ನಿಮ್ಮ ಆಗಮನವೇ ನಮ್ಮ ಸಂಭ್ರಮ</p>
-      <p class="closing-kannada-copy" lang="kn">ನಮ್ಮ ಜೀವನದ ಈ ಸುಂದರ ಕ್ಷಣಕ್ಕೆ<br>ನಿಮ್ಮ ಆಗಮನವೇ ನಮಗೆ ಅತ್ಯಂತ ಸಂತೋಷ.<br>ನಿಮ್ಮ ಪ್ರೀತಿ ಮತ್ತು ಆಶೀರ್ವಾದಗಳೊಂದಿಗೆ<br>ನಮ್ಮ ಹೊಸ ಪಯಣಕ್ಕೆ ಸಾಕ್ಷಿಯಾಗಿ, ಹರಸಲು ಆತ್ಮೀಯ ಸ್ವಾಗತ.</p>
-      <h2>Your presence is the joy of our celebration.</h2>
-      <p class="closing-english">Join us as we celebrate love, witness sacred traditions, and begin a beautiful journey together.</p>
-      <p class="closing-english">Your presence and blessings will make our celebration truly unforgettable.</p>
+      <h2>Join us and bless our new beginning</h2>
+      <p class="closing-english">Together with their families, Praveen and Kavya warmly invite you to share in the joy of their wedding celebration.</p>
+      <p class="closing-english">Your presence and blessings will make this occasion truly special.</p>
+      <p class="closing-kannada-copy" lang="kn">ಬಾಳ ಪಯಣದ ಹೊಸ ಪುಟದತ್ತ ಹೆಜ್ಜೆಯಿಡುತ್ತಿರುವ ನವಜೋಡಿಯನ್ನು ಹರಸಿ, ಹಾರೈಸಲು ತಾವೆಲ್ಲರೂ ಆಗಮಿಸಬೇಕೆಂದು ಹೃತ್ಪೂರ್ವಕವಾಗಿ ಆಹ್ವಾನಿಸುತ್ತೇವೆ.</p>
       <p class="countdown-message" id="countdownMessage" role="status" aria-live="polite"></p>
       <button class="primary-button wine-button closing-share" id="shareButtonClosing" type="button">Bring your family and friends along <span aria-hidden="true">↗</span></button>
       <p class="share-status" id="shareStatus" role="status" aria-live="polite"></p>
-      <p class="closing-signature"><span>With love &amp; gratitude,</span><strong>Praveen <em>&amp;</em> Kavya <i aria-hidden="true">♥</i></strong></p>
+      <p class="closing-signature"><span>With warm regards from the families of</span><strong>Praveen <em>&amp;</em> Kavya <i aria-hidden="true">♥</i></strong></p>
     </section>
   </main>
 
@@ -132,6 +153,6 @@
     <span class="music-icon" aria-hidden="true">♪</span>
   </button>
   <p class="sr-only" id="musicStatus" role="status" aria-live="polite"></p>
-  <script src="script.js?v=23" defer></script>
+  <script src="script.js?v=45" defer></script>
 </body>
 </html>

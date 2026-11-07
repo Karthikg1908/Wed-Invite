@@ -1,12 +1,13 @@
 # Praveen & Kavya — Wedding Invitation
 
-A lightweight, responsive South Indian wedding invitation with a lavender and plum colour theme. It is designed for static hosting on GitHub Pages.
+A lightweight, responsive South Indian wedding invitation with a warm burgundy, champagne-gold, and ivory colour theme. It is designed for static hosting on GitHub Pages.
 
 ## Features
 
 - Ten-second section-by-section auto-scroll with responsive alignment
 - Continuous rose, jasmine, and lavender petal animation
 - Optional background music with a note-only control
+- Opening invitation card that starts music on the visitor's first tap
 - Kannada and English wedding messages
 - Wedding dates, venue photographs, addresses, and Google Maps directions
 - Live wedding and Beegara Oota countdown messages using India Standard Time
@@ -25,6 +26,7 @@ praveen-weds-kavya/
 ├── wedding-music.mp3
 ├── assets/
 │   ├── couple-hero.jpg
+│   ├── welcome-hands.jpg
 │   ├── venue-purvaja.jpg
 │   ├── venue-hb-function-hall.webp
 │   ├── moment-scooter.jpg
