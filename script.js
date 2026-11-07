@@ -4,8 +4,37 @@
   const musicButton = document.querySelector("#musicButton");
   const musicStatus = document.querySelector("#musicStatus");
   const petalLayer = document.querySelector("#petalLayer");
+  const countdownMessage = document.querySelector("#countdownMessage");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let music = null;
+
+  function getMusic() {
+    if (music) return music;
+    music = new Audio("background-music.mp3");
+    music.loop = true;
+    music.preload = "auto";
+    music.volume = 0.35;
+    return music;
+  }
+
+  function updateMusicButton(isPlaying) {
+    musicButton?.classList.toggle("is-playing", isPlaying);
+    musicButton?.setAttribute("aria-pressed", String(isPlaying));
+    musicButton?.setAttribute("aria-label", isPlaying ? "Pause background music" : "Play background music");
+  }
+
+  async function startMusic() {
+    try {
+      await getMusic().play();
+      updateMusicButton(true);
+      if (musicStatus) musicStatus.textContent = "Background music playing.";
+      return true;
+    } catch {
+      updateMusicButton(false);
+      if (musicStatus) musicStatus.textContent = "Tap anywhere to start the music.";
+      return false;
+    }
+  }
 
   async function shareInvitation() {
     const data = {
@@ -28,6 +57,37 @@
     button.addEventListener("click", shareInvitation);
   });
 
+  function updateWeddingMessage(now = new Date()) {
+    if (!countdownMessage) return;
+    const weddingDay = new Date("2026-12-01T00:00:00+05:30");
+    const reception = new Date("2026-12-01T18:30:00+05:30");
+    const thankYou = new Date("2026-12-02T11:00:00+05:30");
+    const beegaraDay = new Date("2026-12-13T00:00:00+05:30");
+    const beegaraStart = new Date("2026-12-13T12:30:00+05:30");
+    const beegaraThanks = new Date("2026-12-13T15:00:00+05:30");
+
+    if (now < weddingDay) {
+      const days = Math.ceil((weddingDay.getTime() - now.getTime()) / 86400000);
+      countdownMessage.textContent = `See you in ${days} ${days === 1 ? "day" : "days"}`;
+    } else if (now < reception) {
+      countdownMessage.textContent = "See you this evening";
+    } else if (now < thankYou) {
+      countdownMessage.textContent = "See you now";
+    } else if (now < beegaraDay) {
+      const days = Math.ceil((beegaraDay.getTime() - now.getTime()) / 86400000);
+      countdownMessage.textContent = `Thank you for joining us! See you at the Beegara Oota in ${days} ${days === 1 ? "day" : "days"}`;
+    } else if (now < beegaraStart) {
+      countdownMessage.textContent = "Thank you for joining us! See you at the Beegara Oota today";
+    } else if (now < beegaraThanks) {
+      countdownMessage.textContent = "Thank you for joining us! See you at the Beegara Oota now";
+    } else {
+      countdownMessage.textContent = "Thank you for joining us";
+    }
+  }
+
+  updateWeddingMessage();
+  window.setInterval(updateWeddingMessage, 60000);
+
   const revealTargets = document.querySelectorAll(
     ".intro > *, .section-heading, .event, .venue-card, .photo-grid figure, .closing > *"
   );
@@ -45,39 +105,34 @@
   }
 
   async function toggleMusic() {
-    if (!music) {
-      music = new Audio("background-music.mp3");
-      music.loop = true;
-      music.preload = "none";
-      music.volume = 0.35;
-    }
-
-    if (music.paused) {
-      try {
-        await music.play();
-        musicButton.classList.add("is-playing");
-        musicButton.setAttribute("aria-pressed", "true");
-        musicButton.setAttribute("aria-label", "Pause background music");
-        musicStatus.textContent = "Background music playing.";
-      } catch {
-        musicStatus.textContent = "Music could not be played on this device.";
-      }
+    if (getMusic().paused) {
+      await startMusic();
     } else {
       music.pause();
-      musicButton.classList.remove("is-playing");
-      musicButton.setAttribute("aria-pressed", "false");
-      musicButton.setAttribute("aria-label", "Play background music");
-      musicStatus.textContent = "Background music paused.";
+      updateMusicButton(false);
+      if (musicStatus) musicStatus.textContent = "Background music paused.";
     }
   }
 
   musicButton?.addEventListener("click", toggleMusic);
+  startMusic();
+
+  async function unlockMusic(event) {
+    if (event.target?.closest?.("#musicButton")) return;
+    if (await startMusic()) {
+      document.removeEventListener("pointerdown", unlockMusic);
+      document.removeEventListener("keydown", unlockMusic);
+    }
+  }
+
+  document.addEventListener("pointerdown", unlockMusic, { passive: true });
+  document.addEventListener("keydown", unlockMusic);
   document.addEventListener("visibilitychange", () => {
     if (document.hidden && music && !music.paused) {
       music.pause();
-      musicButton.classList.remove("is-playing");
-      musicButton.setAttribute("aria-pressed", "false");
-      musicButton.setAttribute("aria-label", "Play background music");
+      updateMusicButton(false);
+    } else if (!document.hidden && music) {
+      startMusic();
     }
   });
 
@@ -115,21 +170,37 @@
   let advanceTimer = 0;
   let interactionTimer = 0;
   let temporarilyPaused = false;
+  let autoScrollInProgress = false;
+
+  function activeTourIndex() {
+    return tourPages.reduce((activeIndex, page, index) => (
+      page.offsetTop <= window.scrollY + 2 ? index : activeIndex
+    ), 0);
+  }
 
   function scheduleNextPage() {
     window.clearTimeout(advanceTimer);
-    if (!autoScrollEnabled || temporarilyPaused || document.hidden) return;
+    if (!autoScrollEnabled || temporarilyPaused || autoScrollInProgress || document.hidden) return;
     advanceTimer = window.setTimeout(advancePage, 5000);
   }
 
   function advancePage() {
-    const nextPage = tourPages.find((page) => page.offsetTop > window.scrollY + 100);
+    if (autoScrollInProgress) return;
+    const nextPage = tourPages[activeTourIndex() + 1];
     if (!nextPage) {
       autoScrollEnabled = false;
       return;
     }
-    nextPage.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
-    scheduleNextPage();
+    autoScrollInProgress = true;
+    window.scrollTo({ top: nextPage.offsetTop, behavior: reducedMotion ? "auto" : "smooth" });
+    window.setTimeout(() => {
+      const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo(0, nextPage.offsetTop);
+      document.documentElement.style.scrollBehavior = previousScrollBehavior;
+      autoScrollInProgress = false;
+      scheduleNextPage();
+    }, 650);
   }
 
   function pauseForInteraction(event) {
@@ -150,7 +221,9 @@
   if (reducedMotion) autoScrollEnabled = false;
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) window.clearTimeout(advanceTimer);
-    else scheduleNextPage();
+    else {
+      scheduleNextPage();
+    }
   });
   scheduleNextPage();
 })();
