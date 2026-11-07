@@ -82,34 +82,31 @@
   });
 
   // Original rose, jasmine, and champagne petal treatment.
-  function launchPetals() {
+  const petalTypes = ["rose", "jasmine", "champagne"];
+  let petalSequence = 0;
+
+  function createPetal(delay = 0) {
     if (!petalLayer || reducedMotion || document.hidden) return;
-    petalLayer.replaceChildren();
     petalLayer.classList.add("active");
-    const count = window.innerWidth < 640 ? 12 : 20;
-    const types = ["rose", "jasmine", "champagne"];
-
-    for (let index = 0; index < count; index += 1) {
-      const petal = document.createElement("span");
-      petal.className = `flower-petal ${types[index % types.length]}`;
-      petal.style.setProperty("--left", `${Math.random() * 100}%`);
-      petal.style.setProperty("--delay", `${(Math.random() * 1.1).toFixed(2)}s`);
-      petal.style.setProperty("--duration", `${(3 + Math.random() * 1.5).toFixed(2)}s`);
-      petal.style.setProperty("--drift", `${(-65 + Math.random() * 130).toFixed(0)}px`);
-      petal.style.setProperty("--spin", `${(180 + Math.random() * 460).toFixed(0)}deg`);
-      petal.style.setProperty("--scale", `${(0.7 + Math.random() * 0.5).toFixed(2)}`);
-      petalLayer.appendChild(petal);
-    }
-
-    window.setTimeout(() => {
-      petalLayer.classList.remove("active");
-      petalLayer.replaceChildren();
-    }, 5000);
+    const petal = document.createElement("span");
+    petal.className = `flower-petal ${petalTypes[petalSequence % petalTypes.length]}`;
+    petalSequence += 1;
+    petal.style.setProperty("--left", `${Math.random() * 100}%`);
+    petal.style.setProperty("--delay", `${delay.toFixed(2)}s`);
+    petal.style.setProperty("--duration", `${(3.2 + Math.random() * 1.4).toFixed(2)}s`);
+    petal.style.setProperty("--drift", `${(-65 + Math.random() * 130).toFixed(0)}px`);
+    petal.style.setProperty("--spin", `${(180 + Math.random() * 460).toFixed(0)}deg`);
+    petal.style.setProperty("--scale", `${(0.7 + Math.random() * 0.5).toFixed(2)}`);
+    petal.addEventListener("animationend", () => petal.remove(), { once: true });
+    petalLayer.appendChild(petal);
   }
 
   if (!reducedMotion) {
-    launchPetals();
-    window.setInterval(launchPetals, 6500);
+    const initialCount = window.innerWidth < 640 ? 8 : 12;
+    for (let index = 0; index < initialCount; index += 1) {
+      createPetal(Math.random() * 1.2);
+    }
+    window.setInterval(createPetal, window.innerWidth < 640 ? 460 : 320);
   }
 
   // A section-by-section tour: wait 5 seconds, then move quickly to the next page.
