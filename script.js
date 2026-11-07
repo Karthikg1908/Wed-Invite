@@ -94,7 +94,7 @@
   window.setInterval(updateWeddingMessage, 60000);
 
   const revealTargets = document.querySelectorAll(
-    ".intro > *, .section-heading, .event, .venue-card, .photo-grid figure, .closing > *"
+    ".intro > *, .section-heading, .event, .venue-card, .photo-grid figure, .film > *, .closing > *"
   );
 
   if ("IntersectionObserver" in window && !reducedMotion) {
@@ -186,7 +186,7 @@
   }
 
   // A section-by-section tour: wait 10 seconds, then move quickly to the next page.
-  const tourPages = [...document.querySelectorAll(".hero, .intro, .venues-page, .moments, .closing")];
+  const tourPages = [...document.querySelectorAll(".hero, .intro, .venues-page, .moments, .film, .closing")];
   let autoScrollEnabled = !reducedMotion;
   let advanceTimer = 0;
   let interactionTimer = 0;

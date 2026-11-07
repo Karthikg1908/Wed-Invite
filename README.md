@@ -11,6 +11,8 @@ A lightweight, responsive South Indian wedding invitation with a lavender and pl
 - Wedding dates, venue photographs, addresses, and Google Maps directions
 - Live wedding and Beegara Oota countdown messages using India Standard Time
 - Mobile-friendly photo gallery and sharing controls
+- Lightweight pre-wedding film placeholder, ready for a future video
+- Background music trimmed to 1 minute 22 seconds for faster loading
 - Reduced-motion support
 
 ## Project files
@@ -56,6 +58,18 @@ python -m http.server 8000
 ```
 
 Then visit http://localhost:8000/.
+
+## Add the pre-wedding video
+
+The film placeholder is the `#film` section in `index.html`. When the video is ready, replace the `.video-placeholder` element with:
+
+```html
+<video class="wedding-video" controls playsinline preload="metadata" poster="assets/moment-portrait.jpg">
+  <source src="assets/pre-wedding-film.mp4" type="video/mp4">
+</video>
+```
+
+Use an H.264 MP4 optimized for the web and keep `preload="metadata"` so the invitation remains lightweight.
 
 ## WhatsApp preview
 
