@@ -36,9 +36,15 @@ button { font-family: var(--sans); }
 .welcome-names { max-width: 100%; margin: 0; color: var(--wine); font: 400 clamp(58px, 7vw, 64px)/.95 var(--script); white-space: nowrap; text-shadow: 0 1px 2px rgba(255,250,240,1), 0 3px 24px rgba(255,250,240,1); }
 .welcome-names em { color: var(--rose); font-weight: 400; }
 .welcome-card h2 { margin: 16px 0 30px; color: var(--wine); font: 600 clamp(28px, 3.5vw, 40px)/1 var(--serif); letter-spacing: -.02em; text-shadow: 0 1px 2px rgba(255,250,240,1), 0 2px 20px rgba(255,250,240,1); }
-.welcome-button { width: 58px; min-width: 58px; height: 58px; display: inline-grid; place-items: center; padding: 0; color: white; background: var(--wine); border: 1px solid var(--gold); border-radius: 50%; box-shadow: 0 10px 30px rgba(36,16,15,.28); cursor: pointer; }
+.welcome-entry { position: relative; display: inline-grid; place-items: center; }
+.welcome-button { position: relative; width: 58px; min-width: 58px; height: 58px; display: inline-grid; place-items: center; padding: 0; color: white; background: var(--wine); border: 1px solid var(--gold); border-radius: 50%; box-shadow: 0 10px 30px rgba(36,16,15,.28); cursor: pointer; animation: welcome-heart-pulse 1.8s ease-in-out infinite; }
+.welcome-button::before, .welcome-button::after { content: ""; position: absolute; inset: -1px; z-index: -1; border: 1px solid rgba(201,162,94,.9); border-radius: 50%; pointer-events: none; animation: welcome-heart-ring 1.8s ease-out infinite; }
+.welcome-button::after { animation-delay: .6s; }
 .welcome-button:hover, .welcome-button:focus-visible { color: var(--wine-deep); background: var(--gold); border-color: var(--wine); outline: 2px solid var(--wine); outline-offset: 3px; }
 .welcome-button span { font: 20px var(--serif); }
+.welcome-tap-hint { --hint-rotation: -42deg; position: absolute; left: calc(100% + 20px); top: 38%; width: 42px; height: 50px; opacity: 0; color: var(--wine); filter: drop-shadow(0 1px 5px rgba(255,250,240,.95)); pointer-events: none; animation: welcome-hint-arrive .45s ease 7s forwards, welcome-hint-point 1.15s ease-in-out 7.45s infinite; }
+.welcome-tap-hint svg { display: block; width: 100%; height: 100%; overflow: visible; fill: rgba(255,250,240,.18); stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.welcome-tap-hint::after { content: "✦"; position: absolute; right: -5px; top: -3px; color: var(--gold); font: 12px/1 var(--serif); animation: drift 1.6s ease-in-out infinite; }
 
 .site-header {
   position: absolute; z-index: 10; inset: 0 0 auto; height: 84px; padding: 0 clamp(22px, 5vw, 72px);
@@ -169,6 +175,10 @@ nav a:hover, .share-link:hover { color: var(--gold); }
 
 @keyframes hero-breathe { from { transform: scale(1); } to { transform: scale(1.035); } }
 @keyframes hero-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes welcome-heart-pulse { 0%, 100% { transform: scale(1); } 45% { transform: scale(1.09); } }
+@keyframes welcome-heart-ring { 0% { opacity: .9; transform: scale(.92); } 75%, 100% { opacity: 0; transform: scale(1.75); } }
+@keyframes welcome-hint-arrive { from { opacity: 0; } to { opacity: .92; } }
+@keyframes welcome-hint-point { 0%, 100% { opacity: .72; transform: translate(5px,5px) rotate(var(--hint-rotation)) scale(.96); } 50% { opacity: 1; transform: translate(0,0) rotate(var(--hint-rotation)) scale(1.04); } }
 @keyframes drift { 0%, 100% { transform: translate3d(0,0,0) rotate(0); opacity: .25; } 50% { transform: translate3d(10px,-18px,0) rotate(45deg); opacity: .8; } }
 @keyframes sound-bar { from { transform: scaleY(.4); } to { transform: scaleY(1); } }
 @keyframes petal-fall {
@@ -191,10 +201,20 @@ nav a:hover, .share-link:hover { color: var(--gold); }
     white-space: normal; transform: translate(-50%, -50%);
     text-shadow: 0 2px 3px rgba(36,16,15,.95), 0 0 12px rgba(255,250,240,.72), 0 5px 24px rgba(36,16,15,.9);
   }
-  .welcome-names em { display: block; width: max-content; margin: 5px auto 7px; font-size: 0; line-height: 1; }
-  .welcome-names em::before { content: "♥"; color: var(--wine); font: 400 29px/1 var(--serif); text-shadow: 0 0 9px rgba(255,250,240,.95), 0 2px 8px rgba(36,16,15,.72); }
+  .welcome-names em { position: relative; display: grid; place-items: center; width: 38px; height: 38px; margin: 5px auto 7px; font-size: 0; line-height: 1; }
+  .welcome-names em::before { content: "♥"; position: relative; z-index: 1; display: block; color: var(--wine); font: 400 29px/1 var(--serif); text-shadow: 0 0 9px rgba(255,250,240,.95), 0 2px 8px rgba(36,16,15,.72); animation: welcome-heart-pulse 1.8s ease-in-out infinite; }
+  .welcome-names em::after { content: ""; position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; border: 2px solid rgba(240,223,188,.98); border-radius: 50%; box-shadow: 0 0 0 6px rgba(201,162,94,.48), 0 0 0 12px rgba(255,250,240,.28), 0 0 18px rgba(255,250,240,.92); transform-origin: 50% 50%; animation: welcome-heart-ring 1.8s ease-out infinite; }
   .welcome-card h2 { margin-top: 26px; font-size: 30px; }
   .welcome-button { display: none; }
+  .welcome-tap-hint {
+    --hint-rotation: 0deg;
+    position: fixed; left: calc(50% + 88px); top: calc(50svh - 34px); width: 52px; height: 52px;
+    padding: 7px; color: var(--champagne); background: rgba(74,19,23,.88);
+    border: 1px solid rgba(201,162,94,.9); border-radius: 50%;
+    box-shadow: 0 5px 18px rgba(36,16,15,.34), 0 0 0 4px rgba(255,250,240,.16);
+    filter: drop-shadow(0 1px 2px rgba(36,16,15,.95));
+  }
+  .welcome-tap-hint svg { transform: rotate(-90deg); transform-origin: 50% 50%; }
   .welcome-screen { cursor: pointer; }
   .site-header { height: 68px; }
   nav a { display: none; }

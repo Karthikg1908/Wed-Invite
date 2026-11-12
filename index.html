@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=DM+Sans:wght@400;500;600&amp;family=Great+Vibes&amp;family=Noto+Serif+Kannada:wght@500&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=47">
+  <link rel="stylesheet" href="style.css?v=56">
 </head>
 <body class="welcome-open">
   <div class="welcome-screen" id="welcomeScreen" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
@@ -24,9 +24,16 @@
       <p class="eyebrow">You are invited</p>
       <p class="welcome-names">Praveen <em>&amp;</em> Kavya</p>
       <h2 id="welcomeTitle">A celebration awaits</h2>
-      <button class="welcome-button" id="enterInvitation" type="button" aria-label="Enter Praveen and Kavya's wedding invitation">
-        <span aria-hidden="true">♥</span>
-      </button>
+      <span class="welcome-entry">
+        <button class="welcome-button" id="enterInvitation" type="button" aria-label="Enter Praveen and Kavya's wedding invitation">
+          <span aria-hidden="true">♥</span>
+        </button>
+        <span class="welcome-tap-hint" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M9 12V4a2 2 0 0 1 4 0v8M13 8a2 2 0 0 1 4 0v5M17 10a2 2 0 0 1 4 0v4c0 5-3 8-8 8h-1c-3 0-5-1.5-6.5-4L3 14.5A2 2 0 0 1 6 12l3 3"/>
+          </svg>
+        </span>
+      </span>
     </div>
   </div>
   <noscript><style>.welcome-screen{display:none!important}body{overflow:auto!important}</style></noscript>
